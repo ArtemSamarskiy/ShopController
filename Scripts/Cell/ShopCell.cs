@@ -1,6 +1,9 @@
 using System;
+using System.Reflection;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class ShopCell : MonoBehaviour
@@ -10,16 +13,16 @@ public class ShopCell : MonoBehaviour
     [SerializeField] private string _outputDescription = "{0}";
     
     [Header("ССЫЛКИ")]
-    [Tooltip("Кнопка покупки")] public Button BuyButton;
     [Tooltip("TextMeshPro для вывода названия")] public TextMeshProUGUI Title;
     [Tooltip("TextMeshPro для вывода описания")] public TextMeshProUGUI Description;
     [Tooltip("Задний фон")] public Image Background;
     [Tooltip("Иконка предмета")] public Image Icon;
+    [Tooltip("")] public EventTrigger EventTrigger;
 
     [HideInInspector] public DataItemShop DataItem;
     [HideInInspector] public ShopController ShopController;
     [HideInInspector] public ScriptItemShop CurrentScript;
-
+    
     public void Init()
     {
         if(!DataItem.ScriptItem || !DataItem || !ShopController) Destroy(gameObject);
@@ -27,8 +30,18 @@ public class ShopCell : MonoBehaviour
         Title.text = string.Format(_outputTitle, DataItem.Title, DataItem.Price);
         Description.text = string.Format(_outputDescription, DataItem.Description, DataItem.Price);
         Icon.sprite = DataItem.Icon;
-        BuyButton.onClick.AddListener(Buy);
         InitScript(DataItem, ShopController);
+        InitTrigger(EventTriggerType.PointerEnter, () => CurrentScript.OnMouseEnter());
+        InitTrigger(EventTriggerType.PointerExit, () => CurrentScript.OnMouseExit());
+        InitTrigger(EventTriggerType.PointerClick, Buy);
+    }
+
+    private void InitTrigger(EventTriggerType eventType, UnityAction action)
+    {
+        EventTrigger.Entry entry = new EventTrigger.Entry();
+        entry.eventID = eventType;
+        entry.callback.AddListener(delegate(BaseEventData arg0) { action.Invoke(); });
+        EventTrigger.triggers.Add(entry);
     }
     
     private void Buy()
