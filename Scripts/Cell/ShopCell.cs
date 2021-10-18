@@ -13,6 +13,7 @@ public class ShopCell : MonoBehaviour
     [Tooltip("Кнопка покупки")] public Button BuyButton;
     [Tooltip("TextMeshPro для вывода названия")] public TextMeshProUGUI Title;
     [Tooltip("TextMeshPro для вывода описания")] public TextMeshProUGUI Description;
+    [Tooltip("Задний фон")] public Image Background;
     [Tooltip("Иконка предмета")] public Image Icon;
 
     [HideInInspector] public DataItemShop DataItem;
@@ -46,6 +47,8 @@ public class ShopCell : MonoBehaviour
         CurrentScript.ShopController = shopController;
         CurrentScript.ShopCell = this;
         CurrentScript.Start();
+        CurrentScript.OnChangeMoney(0, shopController.GetMoney());
+        shopController.OnChangeMoney.AddListener(CurrentScript.OnChangeMoney);
     }
 
     private void Update()

@@ -275,6 +275,7 @@ MonoBehaviour:
   BuyButton: {fileID: 1119633464884264949}
   Title: {fileID: 1119633463970252140}
   Description: {fileID: 3789233063644873913}
+  Background: {fileID: 1119633464884264955}
   Icon: {fileID: 1915005696144245937}
   DataItem: {fileID: 0}
   ShopController: {fileID: 0}

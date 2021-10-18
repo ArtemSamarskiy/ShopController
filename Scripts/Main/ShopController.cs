@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ShopController : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class ShopController : MonoBehaviour
     [Header("ПРЕДМЕТЫ")] 
     [SerializeField] private List<DataItemShop> _items = new List<DataItemShop>();
 
+    [HideInInspector] public UnityChangeMoney OnChangeMoney;
+    
     private void Start()
     {
         if(!_conteiner) return;
@@ -40,9 +43,17 @@ public class ShopController : MonoBehaviour
 
     #region Money
 
-    public void ChangeMoney(float target_money) => _money = target_money;
+    public void ChangeMoney(float target_money)
+    {
+        OnChangeMoney.Invoke(GetMoney(), target_money);
+        _money = target_money;
+    }
+
     public float GetMoney() => _money;
     public bool HasMoney(float money) => GetMoney() >= money;
 
     #endregion
 }
+
+[Serializable]
+public class UnityChangeMoney : UnityEvent<float, float> {}

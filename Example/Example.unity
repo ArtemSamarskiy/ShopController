@@ -520,11 +520,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ec5e9106a8764b47897416a6d65f634, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _money: 200
+  _money: 5
   _shopCell: {fileID: 2529916482999841986, guid: ee8ae77578a9b544497adb0771da5dfc, type: 3}
   _conteiner: {fileID: 717564352}
   _items:
   - {fileID: 11400000, guid: 860361026e3a64047afc94194756df17, type: 2}
+  OnChangeMoney:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1395066045
 GameObject:
   m_ObjectHideFlags: 0
