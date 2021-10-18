@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 public class ShopController : MonoBehaviour
 {
-    [Header("НАСТРОЙКА")]
+    [Header("НАСТРОЙКА")] 
     [SerializeField, Tooltip("Игровые деньги")] private float _money;
 
     [Header("ОСТАЛЬНОЕ")] 
@@ -26,20 +26,9 @@ public class ShopController : MonoBehaviour
             ShopCell newCell = Instantiate(_shopCell, _conteiner);
             newCell.ShopController = this;
             newCell.DataItem = item;
-            newCell.Init(this);
+            newCell.Init();
         }
     }
-
-    #region Buy
-
-    public bool Buy(DataItemShop dataItemShop)
-    {
-        if (!HasMoney(dataItemShop.Price)) return false;
-        ChangeMoney(GetMoney()-dataItemShop.Price);
-        return true;
-    }
-
-    #endregion
 
     #region Money
 

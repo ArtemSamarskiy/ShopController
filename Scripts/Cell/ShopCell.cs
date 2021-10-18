@@ -20,21 +20,25 @@ public class ShopCell : MonoBehaviour
     [HideInInspector] public ShopController ShopController;
     [HideInInspector] public ScriptItemShop CurrentScript;
 
-    public void Init(ShopController shopController)
+    public void Init()
     {
+        if(!DataItem.ScriptItem || !DataItem || !ShopController) Destroy(gameObject);
+
         Title.text = string.Format(_outputTitle, DataItem.Title, DataItem.Price);
         Description.text = string.Format(_outputDescription, DataItem.Description, DataItem.Price);
         Icon.sprite = DataItem.Icon;
-        BuyButton.onClick.AddListener(TryBuy);
-        InitScript(DataItem, shopController);
+        BuyButton.onClick.AddListener(Buy);
+        InitScript(DataItem, ShopController);
     }
     
-    private void TryBuy()
+    private void Buy()
     {
-        if(CurrentScript && !CurrentScript.TryBuy()) return;
-        if(!ShopController.Buy(DataItem)) return;
-        if(CurrentScript) CurrentScript.OnBuy();
-        if((CurrentScript && CurrentScript.TryDestroy()) || !CurrentScript)
+        if(!CurrentScript.TryBuy()) return;
+        if(ShopController.HasMoney(DataItem.Price))
+            ShopController.ChangeMoney(ShopController.GetMoney()-DataItem.Price);
+        else return;
+        CurrentScript.OnBuy();
+        if(CurrentScript.TryDestroy())
             Destroy(gameObject);
     }
     
@@ -51,9 +55,5 @@ public class ShopCell : MonoBehaviour
         shopController.OnChangeMoney.AddListener(CurrentScript.OnChangeMoney);
     }
 
-    private void Update()
-    {
-        if(CurrentScript)
-            CurrentScript.Update();
-    }
+    private void Update() => CurrentScript.Update();
 }
