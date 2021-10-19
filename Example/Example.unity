@@ -518,11 +518,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ec5e9106a8764b47897416a6d65f634, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _money: 5
+  _money: 6
   _shopCell: {fileID: 7588204677636472920, guid: 23751cb788d7a75449e7d31114191d72, type: 3}
   _conteiner: {fileID: 717564352}
   _items:
   - {fileID: 11400000, guid: 860361026e3a64047afc94194756df17, type: 2}
+  - {fileID: 11400000, guid: bdd32256986f68b489494a7ee921d954, type: 2}
+  - {fileID: 11400000, guid: f066b6e95c40d9745aab21e476323ef8, type: 2}
   OnChangeMoney:
     m_PersistentCalls:
       m_Calls: []

@@ -23,7 +23,7 @@ public class ExampleScriptItem : ScriptItemShop
     public override void OnMouseEnter()
     {
         _isMouseEnter = true;
-        UpdateColor(TypeUpdate.Enter);
+        UpdateColor(TypeUpdate.Enter, ShopController.GetMoney());
     }
 
     public override void OnMouseExit()
@@ -32,14 +32,15 @@ public class ExampleScriptItem : ScriptItemShop
         UpdateColor(TypeUpdate.Exit);
     }
 
-    public override void OnChangeMoney(float old_money, float new_money) => UpdateColor(TypeUpdate.Update);
+    public override void OnChangeMoney(float old_money, float new_money) => UpdateColor(TypeUpdate.Update, new_money);
 
-    private void UpdateColor(TypeUpdate typeUpdate)
+    public override bool TryDestroy() => false;
+    private void UpdateColor(TypeUpdate typeUpdate, float money = default)
     {
         Image background = ShopCell.Background;
         if(!background) return;
         if ((typeUpdate == TypeUpdate.Update || typeUpdate == TypeUpdate.Enter) && _isMouseEnter)
-            background.color = ShopController.GetMoney() >= DataItemShop.Price ? _colorEnough : _colorNotEnough;
+            background.color = money >= DataItemShop.Price ? _colorEnough : _colorNotEnough;
         else background.color = _colorDefault;
     }
 }
