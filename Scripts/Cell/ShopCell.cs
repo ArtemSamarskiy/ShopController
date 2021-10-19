@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class ShopCell : MonoBehaviour
 {
     [Header("ВЫВОД")] 
-    [SerializeField] private string _outputTitle = "{0} <size=27>{1}$</size=27>";
+    [SerializeField] private string _outputTitle = "{0} <size=27>{1}$</size>";
     [SerializeField] private string _outputDescription = "{0}";
     
     [Header("ССЫЛКИ")]
@@ -36,7 +36,7 @@ public class ShopCell : MonoBehaviour
         InitTrigger(EventTriggerType.PointerClick, Buy);
     }
 
-    private void InitTrigger(EventTriggerType eventType, UnityAction action)
+    public void InitTrigger(EventTriggerType eventType, UnityAction action)
     {
         EventTrigger.Entry entry = new EventTrigger.Entry();
         entry.eventID = eventType;

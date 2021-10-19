@@ -280,8 +280,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 717564352}
-  - component: {fileID: 717564354}
   - component: {fileID: 717564353}
+  - component: {fileID: 717564354}
   m_Layer: 5
   m_Name: Conteiner
   m_TagString: Untagged
@@ -331,23 +331,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 717564351}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
+  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 20
-    m_Right: 20
-    m_Top: 20
-    m_Bottom: 20
-  m_ChildAlignment: 0
-  m_Spacing: 20
-  m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 1
-  m_ChildControlWidth: 1
-  m_ChildControlHeight: 0
-  m_ChildScaleWidth: 0
-  m_ChildScaleHeight: 0
-  m_ReverseArrangement: 0
+    m_Left: 10
+    m_Right: 10
+    m_Top: 10
+    m_Bottom: 10
+  m_ChildAlignment: 4
+  m_StartCorner: 0
+  m_StartAxis: 0
+  m_CellSize: {x: 200, y: 250}
+  m_Spacing: {x: 10, y: 10}
+  m_Constraint: 0
+  m_ConstraintCount: 2
 --- !u!1 &1247311989
 GameObject:
   m_ObjectHideFlags: 0
@@ -521,7 +519,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _money: 5
-  _shopCell: {fileID: 2529916482999841986, guid: ee8ae77578a9b544497adb0771da5dfc, type: 3}
+  _shopCell: {fileID: 7588204677636472920, guid: 23751cb788d7a75449e7d31114191d72, type: 3}
   _conteiner: {fileID: 717564352}
   _items:
   - {fileID: 11400000, guid: 860361026e3a64047afc94194756df17, type: 2}

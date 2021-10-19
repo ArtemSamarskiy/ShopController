@@ -16,7 +16,6 @@ public class ScriptItemShop : ScriptableObject
     
     // ================================================================= Other
     public virtual bool TryDestroy() => true; // Вызываеться когда нужно удалить ячейку (true - можно удалить false - нельзя)
-
     public virtual void OnMouseEnter() { }
     public virtual void OnMouseExit() { }
     public virtual void OnChangeMoney(float old_money, float new_money) { } // Вызываеться когда меняеться кол-во денег
